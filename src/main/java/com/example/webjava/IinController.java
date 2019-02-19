@@ -9,39 +9,28 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import java.util.Map;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
-public class WebController implements WebMvcConfigurer {
-
+public class IinController implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
     }
 
-    @GetMapping("/check")
-    public String showForm(PersonForm personForm)
+    @GetMapping("/gpo_order")
+    public String showForm(iinForm iinForm)
     {
-        return "form";
+        return "gpo";
     }
 
-    @PostMapping("/check")
+    @PostMapping("/gpo_order")
     public String checkPersonInfo(@Valid PersonForm personForm, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
-            return "form";
+            return "gpo";
         }
 
-        return "results";
+        return "redirect:/results";
     }
-    @RequestMapping("/redirect")
-    public String redirect(@RequestParam(name="name", required=false,defaultValue="Arnur") String name, Map<String, Object> model){
-        model.put("name", name);
-        return ("greeting");
-    }
-
-
-
-
 }

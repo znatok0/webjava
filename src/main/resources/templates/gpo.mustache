@@ -59,10 +59,19 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
-        <h2><div style="color:red;">#Kupipolis</div> не выходя из дома!</h2>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+      <div class="container" style="margin-top:5%;">
+            <form action="#" th:object="${personForm}" method="post">
+                               <table>
+                                   <tr>
+                                       <td>Ваш ИИН:</td>
+                                       <td><input type="text" field="*{iin}" /></td>
+                                       <td if="${#fields.hasErrors('iin')}" errors="*{iin}">Ошибка ИИН</td>
+                                   </tr>
+                                   <tr>
+                                       <td><button type="submit" href="gpo_order">Заказать</button></td>
+                                   </tr>
+                               </table>
+            </form>
       </div>
     </div>
 
